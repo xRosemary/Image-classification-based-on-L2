@@ -53,7 +53,7 @@ def creat_learning_data(X, y, learning_rate, max_step, max_cost):
 
 
 def predict(input_x, thetas):
-    input_x = np.insert(input_x, 1, 0)
+    input_x = np.insert(input_x, 0, values=1)
     hypothesis = softmax(np.dot(input_x, thetas.T))
     return np.argmax(hypothesis)
 
