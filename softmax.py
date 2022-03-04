@@ -1,10 +1,8 @@
 import numpy as np
-import LoadData
+from com.MainProject1 import LoadData
 from sklearn.metrics import classification_report
 
-domains = ['amazon', 'caltech', 'dslr', 'webcam']
-
-X_train, y_train, X_test, y_test = LoadData.readData(domains[2], domains[3])
+X_train, X_test, y_train, y_test = LoadData.readData(test_size=0.3)
 
 
 def softmax(Z):
@@ -53,7 +51,7 @@ def creat_learning_data(X, y, learning_rate, max_step, max_cost):
 
 
 def predict(input_x, thetas):
-    input_x = np.insert(input_x, 0, values=1)
+    input_x = np.insert(input_x, 1, 0)
     hypothesis = softmax(np.dot(input_x, thetas.T))
     return np.argmax(hypothesis)
 
@@ -73,5 +71,6 @@ def predict_all(X, thetas):
 
 if __name__ == "__main__":
     thetas = creat_learning_data(X_train, y_train, learning_rate=0.1, max_step=1000, max_cost=0.001)
+    # thetas = load_learning_data()
     y_pred = predict_all(X_test, thetas)
     print(classification_report(y_test, y_pred))
