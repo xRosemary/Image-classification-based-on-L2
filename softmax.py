@@ -1,5 +1,5 @@
 import numpy as np
-from com.MainProject1 import LoadData
+import LoadData
 from sklearn.metrics import classification_report
 
 X_train, X_test, y_train, y_test = LoadData.readData(test_size=0.3)
